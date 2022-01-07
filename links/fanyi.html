@@ -1,0 +1,63 @@
+<!doctype html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Translate</title>  
+</head>  
+<body>  
+<div id="SRC">  
+<textarea id="srcText" name="srcText " style="width:500px; height:120px;">  
+</textarea>  
+  
+<button id="Click" name="Click">Translate</button>  
+</div>  
+  
+<br />   
+<hr />  
+<div id="DST">  
+<textarea id="dstText" name="dstText" style="width:500px; height:120px;">  
+</textarea>  
+</div>  
+  
+  
+</body>
+<script src="jquery-1.8.2.min.js" type="text/javascript"></script>  
+<script type="text/javascript">  
+   
+$("#Click").click(function (){  
+  
+var contents = $("#srcText").val() ;  
+alert(  contents) ;  
+  
+  
+$.ajax({  
+       type:"get",  
+       async:false,                                                 //must be synchronized  
+       url:"http://openapi.baidu.com/public/2.0/bmt/translate",  
+       dataType:"jsonp",  
+       data: {  
+           from: "zh",                                              //language choose  
+           to: "en",  
+           client_id:  这个地方输入你自己在百度开源申请的API 的 KEY,                  //baidu api key  
+           q: contents  
+       },     
+       success:function(json , status){  
+           
+            //alert("here is the status :"+status) ;  
+            $("#dstText").empty() ;  
+  
+            for ( var i = 0 ; i < json.trans_result.length ; i++ )  
+            {  
+            $("#dstText").append( json.trans_result[i].dst  +" <br />") ;  
+            }  
+        //  alert(json.trans_result[0].dst +" <br /> "+json.trans_result[0].src) ;  
+           
+      },  
+      error:function(){  
+          alert('Fail to translate with baidu API!');  
+      }  
+});  
+}) ;  
+  
+</script>  
+</html>  
