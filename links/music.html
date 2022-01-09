@@ -7,58 +7,83 @@
 </head>
 <body>
     <h1 align="center">音乐合集</h1>
-    合计：9首
+    <p>合计：9首</p>
     <br />
 
-    1.铭刻时间的歌
+    <p>全部播放</p>
+    <div id="audioBox"> 
+        <script type="text/javascript"> 
+        window.onload = function(){ 
+        var arr = ["../music/胧月.mp3","../music/在你的身旁....mp3","../music/最初的声音.mp3","../music/初岚.mp3","../music/把大家都mikumiku掉♪.mp3","../music/团子大家族.mp3","../music/晴天好心情.mp3","../music/潮鸣.mp3","../music/铭刻时间的歌.mp3"];   //把需要播放的歌曲从后往前排 
+        var myAudio = new Audio(); 
+        myAudio.preload = true; 
+        myAudio.controls = true; 
+        myAudio.src = arr.pop();    //每次读数组最后一个元素 
+        myAudio.addEventListener('ended', playEndedHandler, false); 
+        myAudio.play(); 
+        document.getElementById("audioBox").appendChild(myAudio); 
+        myAudio.loop = false;    //禁止循环，否则无法触发ended事件 
+        function playEndedHandler(){ 
+        myAudio.src = arr.pop(); 
+        myAudio.play(); 
+        console.log(arr.length); 
+        !arr.length && myAudio.removeEventListener('ended',playEndedHandler,false);    //只有一个元素时解除绑定 
+        } 
+        } 
+        </script>
+    </div>
+    <br />
+
+    
+    <p>1.铭刻时间的歌</p>
     <audio controls>
         <source src="../music/铭刻时间的歌.mp3" type="audio/mpeg">
     </audio>
     <br />
 
-    2.潮鸣
+    <p>2.潮鸣</p>
     <audio controls>
         <source src="../music/潮鸣.mp3" type="audio/mpeg">
     </audio>
     <br />
 
-    3.晴天好心情
+    <p>3.晴天好心情</p>
     <audio controls>
         <source src="../music/晴天好心情.mp3" type="audio/mpeg">
     </audio>
     <br />
 
-    4.团子大家族
+    <p>4.团子大家族</p>
     <audio controls>
         <source src="../music/团子大家族.mp3" type="audio/mpeg">
     </audio>
     <br />
 
-    5.把大家都mikumiku掉♪
+    <p>5.把大家都mikumiku掉♪</p>
     <audio controls>
         <source src="../music/把大家都mikumiku掉♪.mp3" type="audio/mpeg">
     </audio>
     <br />
 
-    6.初岚
+    <p>6.初岚</p>
     <audio controls>
         <source src="../music/初岚.mp3" type="audio/mpeg">
     </audio>
     <br />
 
-    7.最初的声音
+    <p>7.最初的声音</p>
     <audio controls>
         <source src="../music/最初的声音.mp3" type="audio/mpeg">
     </audio>
     <br />
 
-    8.在你的身旁...
+    <p>8.在你的身旁...</p>
     <audio controls>
         <source src="../music/在你的身旁....mp3" type="audio/mpeg">
     </audio>
     <br />
 
-    9.胧月
+    <p>9.胧月</p>
     <audio controls>
         <source src="../music/胧月.mp3" type="audio/mpeg">
     </audio>
